@@ -1,6 +1,7 @@
 <!doctype html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
-<head lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
   <meta charset="utf-8">
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,11 +13,11 @@
 
   <link rel="stylesheet" type="text/css" href="{{ asset('shopaholic') }}/css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="{{ asset('shopaholic') }}/css/themify-icons.css">
-  <link rel="stylesheet" type="text/css" href="{{ asset('shopaholic') }}/css/et-line-icons.css">  
+  <link rel="stylesheet" type="text/css" href="{{ asset('shopaholic') }}/css/et-line-icons.css">
 
   <link rel="stylesheet" href="{{ asset('shopaholic') }}/css/bootstrap.min.css">
   <link rel="stylesheet" href="{{ asset('shopaholic') }}/css/slick.css">
-  <link rel="stylesheet" href="{{ asset('shopaholic') }}/css/magnific-popup.css"> 
+  <link rel="stylesheet" href="{{ asset('shopaholic') }}/css/magnific-popup.css">
   <link rel="stylesheet" href="{{ asset('shopaholic') }}/css/style.css">
   <link rel="stylesheet" href="{{ asset('shopaholic') }}/css/themes.css">
   <link rel="stylesheet" href="{{ asset('shopaholic') }}/css/shop/shop.css">
@@ -24,41 +25,42 @@
 
 </head>
 
-
 <body>
-<style>
-  #overlay{
-    position:fixed;
-    z-index:99999;
-    top:0;
-    left:0;
-    bottom:0;
-    right:0;
-    background:rgba(0,0,0,0.9);
-    transition: 1s 0.4s;
-  }
-  #progress{
-    height:1px;
-    background:#fff;
-    position:absolute;
-    width:0;
-    top:50%;
-  }
-  #progstat{
-    font-size:0.7em;
-    letter-spacing: 3px;
-    position:absolute;
-    top:50%;
-    margin-top:-40px;
-    width:100%;
-    text-align:center;
-    color:#fff;
-  }
-</style>
-      <div id="overlay">
-        <div id="progstat"></div>
-        <div id="progress"></div>
-      </div>
+  <style>
+    #overlay {
+      position: fixed;
+      z-index: 99999;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      background: rgba(0, 0, 0, 0.9);
+      transition: 1s 0.4s;
+    }
+
+    #progress {
+      height: 1px;
+      background: #fff;
+      position: absolute;
+      width: 0;
+      top: 50%;
+    }
+
+    #progstat {
+      font-size: 0.7em;
+      letter-spacing: 3px;
+      position: absolute;
+      top: 50%;
+      margin-top: -40px;
+      width: 100%;
+      text-align: center;
+      color: #fff;
+    }
+  </style>
+  <div id="overlay">
+    <div id="progstat"></div>
+    <div id="progress"></div>
+  </div>
   <header id="masthead" class="masthead">
 
     <div class="header-top">
@@ -73,7 +75,7 @@
           </div><!-- /.top-left -->
 
           <div class="col-sm-7 top-right text-right">
-            
+
             {{-- <div class="wish-list">
               <a href="#" class="current-title">Wishlist</a>
               <span class="count">0</span>
@@ -81,25 +83,28 @@
             </div> --}}
 
             @guest
-              <div class="checkout"><a href="{{ route('login') }}">Log In <i class="ti-check-box"></i></a></div><!-- /.checkout -->
-              @if (Route::has('register'))
-              <div class="checkout"><a href="{{ route('register') }}">Registrasi <i class="ti-check-box"></i></a></div><!-- /.checkout -->
-              @endif
+            <div class="checkout"><a href="{{ route('login') }}">Log In <i class="ti-check-box"></i></a></div>
+            <!-- /.checkout -->
+            @if (Route::has('register'))
+            <div class="checkout"><a href="{{ route('register') }}">Registrasi <i class="ti-check-box"></i></a></div>
+            <!-- /.checkout -->
+            @endif
             @else
-              <div class="checkout"><a href="{{ route('logout') }}" onclick="event.preventDefault();
-                document.getElementById('logout-form').submit();">Log Out <i class="ti-check-box"></i></a></div><!-- /.checkout -->
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    @csrf
-                </form>
-                <div class="my-account dropdown">
-                  <a href="#">{{ Auth::user()->name }}<i class="ti-user"></i></a>
-                  <ul class="unsorted-list">
-                    <li><a href="{{ url('/login') }}">Dashboard</a></li>
-                  </ul>
-                </div><!-- /.my-account -->
+            <div class="checkout"><a href="{{ route('logout') }}" onclick="event.preventDefault();
+                document.getElementById('logout-form').submit();">Log Out <i class="ti-check-box"></i></a></div>
+            <!-- /.checkout -->
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+              @csrf
+            </form>
+            <div class="my-account dropdown">
+              <a href="#">{{ Auth::user()->name }}<i class="ti-user"></i></a>
+              <ul class="unsorted-list">
+                <li><a href="{{ url('/dashboard') }}">Dashboard</a></li>
+              </ul>
+            </div><!-- /.my-account -->
             @endguest
 
-            
+
           </div><!-- /.top-right -->
         </div><!-- /.row -->
       </div><!-- /.container -->
@@ -109,12 +114,13 @@
       <div class="container">
         <div class="row">
           <div class="col-sm-3">
-            <h1><a class="navbar-brand hidden-xs" href="./"><img src="{{ asset('shopaholic') }}/images/logo.png" alt="Site Logo"></a></h1>
+            <h1><a class="navbar-brand hidden-xs" href="{{ url('/') }}"><img
+                  src="{{ asset('shopaholic') }}/images/logo.png" alt="Site Logo"></a></h1>
           </div>
           <div class="col-sm-7">
             <div class="top-search-form">
               <form action="#" method="post" class="menu-form">
-                <fieldset> 
+                <fieldset>
                   <select name="category" id="category">
                     <option selected="selected">All Categories</option>
                     <option>Men's Wear</option>
@@ -134,15 +140,15 @@
 
                 <input type="text" placeholder="Keywords ..." class="form-control">
                 <button type="submit" class="btn"><i class="fa fa-search"></i></button>
-              </form>  
+              </form>
             </div><!-- /.top-search-form -->
           </div>
           <div class="col-sm-2">
-            <div class="shop-cart">             
+            <div class="shop-cart">
               <a class="cart-control" href="#" title="View your shopping cart">
                 <i class="ti-bag"></i>
                 <span class="count">3</span>
-                <span>Cart - </span> 
+                <span>Cart - </span>
                 <span class="currency">$</span>
                 <span class="amount">345.00</span>
               </a><!-- /.cart-control -->
@@ -156,12 +162,13 @@
                         <img src="{{ asset('shopaholic') }}/images/menu/cart/1.png" alt="Item Thimbnail">
                       </div><!-- /.item-thumbnail -->
                       <div class="item-details media-body">
-                        <div class="rating"><input type="hidden" class="rating-tooltip-manual" data-filled="fa fa-star" data-empty="fa fa-star-o" data-fractions="5"/></div><!-- /.rating -->
+                        <div class="rating"><input type="hidden" class="rating-tooltip-manual" data-filled="fa fa-star"
+                            data-empty="fa fa-star-o" data-fractions="5" /></div><!-- /.rating -->
                         <h4 class="item-title"><a href="#">Product Name Here</a></h4><!-- /.item-title -->
                         <div class="item-price">
                           <div class="item-price">
                             <span class="currency">$</span>
-                            <span class="price">65</span> 
+                            <span class="price">65</span>
                             <span class="item-count">3</span><!-- /.item-count -->
                           </div><!-- /.item-price -->
                         </div><!-- /.item-price -->
@@ -174,13 +181,14 @@
                         <img src="{{ asset('shopaholic') }}/images/menu/cart/2.png" alt="Item Thimbnail">
                       </div><!-- /.item-thumbnail -->
                       <div class="item-details media-body">
-                        <div class="rating"><input type="hidden" class="rating-tooltip-manual" data-filled="fa fa-star" data-empty="fa fa-star-o" data-fractions="5"/></div><!-- /.rating -->
+                        <div class="rating"><input type="hidden" class="rating-tooltip-manual" data-filled="fa fa-star"
+                            data-empty="fa fa-star-o" data-fractions="5" /></div><!-- /.rating -->
 
                         <h4 class="item-title"><a href="#">Product Name Here</a></h4><!-- /.item-title -->
                         <div class="item-price">
                           <div class="item-price">
                             <span class="currency">$</span>
-                            <span class="price">65</span> 
+                            <span class="price">65</span>
                             <span class="item-count">3</span><!-- /.item-count -->
                           </div><!-- /.item-price -->
                         </div><!-- /.item-price -->
@@ -211,7 +219,8 @@
     <div class="header-bottom">
       <div class="container">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu" aria-expanded="false">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu"
+            aria-expanded="false">
             <i class="fa fa-bars"></i>
           </button>
           <a class="navbar-brand visible-xs" href="{{ url('/') }}">
@@ -289,7 +298,7 @@
                     <li><a href="portfolio-grid-2column-01.html">2 Column 01</a></li>
                     <li><a href="portfolio-grid-2column-02.html">2 Column 02</a></li>
                   </ul>
-                </li>   
+                </li>
 
                 <li class="menu-item menu-item-has-children">
                   <a href="#">Grid 3 Column</a>
@@ -305,7 +314,7 @@
                     <li><a href="portfolio-grid-4column.html">4 Column 01</a></li>
                     <li><a href="portfolio-grid-4column-02.html">4 Column 02</a></li>
                   </ul>
-                </li>    
+                </li>
 
                 <li class="menu-item menu-item-has-children">
                   <a href="#">Masonry 3 Column</a>
@@ -313,8 +322,8 @@
                     <li><a href="portfolio-masonry-3column.html">3 Column 01</a></li>
                     <li><a href="portfolio-masonry-3column-02.html">3 Column 02</a></li>
                   </ul>
-                </li>  
-                                            
+                </li>
+
 
                 <li><a href="portfolio-list.html">List Style</a></li>
 
@@ -328,7 +337,7 @@
               </ul>
             </li>
 
-            <li class="menu-item"><a href="#">Buy</a></li> 
+            <li class="menu-item"><a href="#">Buy</a></li>
 
           </ul><!-- /.navbar-nav -->
         </nav><!-- /.navbar-collapse -->
@@ -361,7 +370,8 @@
         <div class="row">
           <div class="col-sm-7 text-left">
             <div class="copyright">
-              © <a href="https://github.com/rahmap">Shopaholic</a> 2020 | Develpoed With Love by <a href="https://github.com/rahmap">rahmap</a>
+              © <a href="https://github.com/rahmap">Shopaholic</a> 2020 | Develpoed With Love by <a
+                href="https://github.com/rahmap">rahmap</a>
             </div><!-- /.copyright -->
           </div>
 
@@ -383,7 +393,7 @@
 
 
   <div id="scroll-to-top" class="scroll-to-top">
-    <i class="fa fa-angle-double-up"></i>    
+    <i class="fa fa-angle-double-up"></i>
   </div>
 
 
@@ -431,4 +441,5 @@
   @yield('outJS')
 
 </body>
+
 </html>

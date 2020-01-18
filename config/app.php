@@ -2,6 +2,10 @@
 
 return [
 
+    'madeBy' => 'rahmap',
+    'linkIG' => 'https://www.instagram.com/rahmaap__/',
+    'linkGithub' => 'https://github.com/rahmap',
+
     /*
     |--------------------------------------------------------------------------
     | Application Name
@@ -80,7 +84,8 @@ return [
     |
     */
 
-    'locale' => 'en',
+    // 'locale' => 'en',
+    'locale' => 'id',
 
     /*
     |--------------------------------------------------------------------------
@@ -106,7 +111,8 @@ return [
     |
     */
 
-    'faker_locale' => 'en_US',
+    // 'faker_locale' => 'en_US',
+    'faker_locale' => 'id_ID',
 
     /*
     |--------------------------------------------------------------------------
