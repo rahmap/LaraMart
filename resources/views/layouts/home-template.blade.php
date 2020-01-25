@@ -5,7 +5,8 @@
   <meta charset="utf-8">
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
+  <!-- App favicon -->
+  <link rel="shortcut icon" href=" {{ asset('favicon.ico') }}">
   <title>{{ config('app.name') }} - @yield('subTitle') </title>
   <meta name="description" content="Shopaholic - e-Commerce HTML5 Template">
   <meta name="viewport" content="width=device-width, initial-scale=1">
