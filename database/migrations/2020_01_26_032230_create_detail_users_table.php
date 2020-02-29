@@ -18,7 +18,7 @@ class CreateDetailUsersTable extends Migration
             $table->integer('is_active')->default(1);
             $table->string('photo_user', 100)->nullable(true)->default(NULL);
             $table->timestamp('delete_at')->nullable(true)->default(NULL);
-            $table->bigInteger('id_user')->unique()->unsigned();
+            $table->bigInteger('user_id')->unique()->unsigned();
         });
     }
 

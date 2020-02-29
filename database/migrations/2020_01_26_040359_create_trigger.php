@@ -12,7 +12,7 @@ class CreateTrigger extends Migration
         DB::unprepared('
             CREATE TRIGGER tr_after_insert_users AFTER INSERT ON `users` FOR EACH ROW
             BEGIN
-                INSERT INTO detail_users SET id_user = NEW.id;
+                INSERT INTO detail_users SET user_id = NEW.id;
             END
         '); //Membuat id_user di detail_users auto terisi
     }

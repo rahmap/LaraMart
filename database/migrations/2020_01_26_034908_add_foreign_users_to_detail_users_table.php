@@ -14,7 +14,7 @@ class AddForeignUsersToDetailUsersTable extends Migration
     public function up()
     {
         Schema::table('detail_users', function (Blueprint $table) {
-            $table->foreign('id_user')->references('id')->on('users')
+            $table->foreign('user_id')->references('id')->on('users')
             ->onUpdate('cascade')->onDelete('cascade');
         });
     }
@@ -27,8 +27,8 @@ class AddForeignUsersToDetailUsersTable extends Migration
     public function down()
     {
         Schema::table('detail_users', function (Blueprint $table) {
-            $table->dropForeign(['id_user']); //
-            $table->dropColumn(['id_user']);
+            $table->dropForeign(['user_id']); //
+            $table->dropColumn(['user_id']);
         });
     }
 }
